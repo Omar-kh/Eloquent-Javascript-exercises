@@ -39,3 +39,52 @@ function reverseArrayInPlace(arr) {
   }
   return arr;
 }
+
+// A LIST
+// ARRAY TO LIST
+// Rating 3/5
+function arrayToList(arr) {
+  let list = {
+    value: arr[0],
+    rest: {}
+  };
+  let list_nest = list['rest'];
+  for (let i = 1; i < arr.length; i++) {
+    list_nest['value'] = arr[i];
+    list_nest['rest'] = {};
+    list_nest = list_nest['rest'];
+  }
+
+  return list;
+}
+
+// LIST TO ARRAY
+// Rating 4/5
+function listToArray(list) {
+  let values = [];
+  while (Object.values(list).length > 0) {
+    values.push(list.value);
+    list = list.rest;
+  }
+  return values;
+}
+
+// PREPEND
+// Rating 5/5
+function prepend(elem, list) {
+  return { value: elem, rest: list };
+}
+
+// NTH
+// Rating 5/5
+function nth(list, num) {
+  if (num > 0 && list !== undefined) {
+    num -= 1;
+    list = list.rest || undefined;
+    return nth(list, num);
+  } else if (!list) {
+    return 'You specified an index higher than the number of the nested objects';
+  } else {
+    return list.value;
+  }
+}
