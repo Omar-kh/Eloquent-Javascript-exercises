@@ -88,3 +88,24 @@ function nth(list, num) {
     return list.value;
   }
 }
+
+// DEEP COMPARISON
+// Rating 0/5 was too tired to focus on a solution (the following does not work)
+
+function deepEqual(firstObj, secondObj) {
+  Object.keys(firstObj).forEach(key => {
+    if (firstObj[key] && secondObj[key]) {
+      if (
+        firstObj[key] &&
+        typeof firstObj[key] === typeof secondObj[key] &&
+        typeof firstObj[key] === 'object'
+      ) {
+        return deepEqual(firstObj[key], secondObj[key]);
+      } else {
+        return firstObj[key] === secondObj[key];
+      }
+    } else {
+      return 'The objects have different keys';
+    }
+  });
+}
