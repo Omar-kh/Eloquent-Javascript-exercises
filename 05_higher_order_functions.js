@@ -19,3 +19,23 @@ function loop(val, test, update, body) {
     val = update(val);
   }
 }
+
+//EVERYTHING
+// Rating 3/5
+function every(arr, test) {
+  for (elem of arr) {
+    if (!test(elem)) return false;
+  }
+  return true;
+}
+
+function every(arr, test) {
+  if (arr.length === 0) return true;
+  if (!arr.some(test)) return false;
+
+  if (arr.some(test)) {
+    matchIdx = arr.findIndex(test);
+    arr.splice(matchIdx, matchIdx + 1);
+    return every(arr, test);
+  }
+}
